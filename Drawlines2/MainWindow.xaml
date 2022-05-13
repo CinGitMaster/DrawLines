@@ -1,0 +1,238 @@
+﻿<Window
+    x:Class="Drawlines2.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:Drawlines2.ViewModels"
+    mc:Ignorable="d" 
+    
+    SizeChanged="Window_SizeChanged"
+    >
+
+    <Grid Background="white">
+
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="Width" Value="80" />
+                <Setter Property="Height" Value="40" />
+
+                <Setter Property="CornerRadius" Value="3" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Style>
+
+
+            <Style TargetType="TextBlock">
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="Width" Value="130" />
+                <Setter Property="Height" Value="40" />
+
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+        </Grid.Resources>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"  />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- #region Titlebar Background="{ThemeResource AppBarBackgroundThemeBrush}"  -->
+        <StackPanel Grid.Row="0" Grid.Column="0" x:Name="TitleBar" Margin="90,0,0,0" Background="White" Orientation="Horizontal"  >
+            <StackPanel Background="White"></StackPanel>
+            <Image Source="Images/Cinnova_Logo_CMYK_60px.jpg" />            
+            <StackPanel Background="White"></StackPanel>
+        </StackPanel>
+        <!-- #endregion Titlebar -->
+
+
+
+        <Grid Grid.Row="1" Grid.Column="0" Background="#E0E0E0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Padding" Value="4, 7, 4, 5" />
+                    <Setter Property="Margin" Value="1" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="TextAlignment" Value="Center" />                    
+                    
+                    <Setter Property="Width" Value="80" />
+                    <Setter Property="Height" Value="40" />
+
+                    <Setter Property="CornerRadius" Value="3" />
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Background" Value="White" />
+                </Style>
+
+
+                <Style TargetType="TextBlock">
+                    <Setter Property="Padding" Value="2" />
+                    <Setter Property="Margin" Value="1" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="Width" Value="130" />
+                    <Setter Property="Height" Value="40" />
+                    <Setter Property="FontSize" Value="18" />
+                </Style>
+            </Grid.Resources>
+
+
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="{ThemeResource AppBarBackgroundThemeBrush}" Orientation="Horizontal"  >
+                <Button x:Name="ShowPage_Platesize_button" Tag="1" Width="90" Margin="1,3,1,3" Click="btnShowTab_Click" IsEnabled="True">Plate size</Button>
+                <Button x:Name="ShowPage_MultipleLines_button" Tag="2" Width="120" Margin="1,3,1,3" Click="btnShowTab_Click" IsEnabled="True">Multiple lines</Button>
+                <Button x:Name="ShowPage_SingleLine_button"    Tag="3" Width="120" Margin="1,3,1,3" Click="btnShowTab_Click" IsEnabled="True">Single line</Button>
+                <Button x:Name="ToggleOnScreenKeyboard_button" Tag="4" Margin="1,3,1,3" Click="btnShowTab_Click" IsEnabled="True">Keyboard</Button>
+            </StackPanel>
+
+            <StackPanel x:Name="MessageLineStackComponent" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Background="LightGray" Orientation="Horizontal" Width="440" >
+                <TextBlock x:Name="MessageLineComponent" Grid.Row="0" Height="30" Width="440"  Text="{x:Bind MessageVM.MessageLine, Mode=OneWay}"  HorizontalAlignment="left" FontSize="12" />
+            </StackPanel>
+
+
+
+
+            <Grid x:Name="page1_PlatesizeInput" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" ColumnSpacing="3" RowSpacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical"  >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Length Y-direction" Width="180" Height="40" Padding="4, 7, 4, 5" Margin="1" />
+                        <TextBox Name="PlateHeight_edit" Height="40" Padding="4, 7, 4, 5" Margin="6,3,6,3" TextAlignment="Center" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="108" Text="{x:Bind PlateVM.PlateYLength, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"> 
+                        <TextBlock Text="Total width" Width="180" Height="40" Padding="4, 7, 4, 5" Margin="1" />
+                        <TextBox Name="PlateWidth_edit" Height="40" Padding="4, 7, 4, 5" Margin="6,3,6,3" TextAlignment="Center"  InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="109" Text="{x:Bind PlateVM.PlateWidth, Mode=TwoWay}"  />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Plate size" Width="180"  Height="40" Padding="2" Margin="1"/>
+                        <TextBlock  Text="{x:Bind PlateVM.DisplayPlateSize, Mode=OneWay}" Width="120" Padding="2" Margin="1" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+
+            <ScrollViewer x:Name="page2_MultipleLines" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" >
+
+                <Grid ColumnSpacing="3" RowSpacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <!-- row 0 = Size of total plate -->
+                        <RowDefinition Height="*" />
+
+                        <!-- row 1 = label  Width col and Amount colum -->
+                        <RowDefinition Height="*" />
+
+                        <!-- row 2 -->
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+
+                        <!-- row 7 -->
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        
+                        <!-- Row 12 remainder -->
+                        <RowDefinition Height="*" />
+                       
+                        <!-- row 13 button Export din file-->
+                        <RowDefinition Height="*" />
+                        
+                    </Grid.RowDefinitions>
+
+
+
+
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Width" />
+                    <TextBox Name="Size1_edit" Grid.Row="2" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="110" Text="{x:Bind PiecesVM.Piece1Width, Mode=TwoWay}" />
+                    <TextBox Name="Size2_edit" Grid.Row="3" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="112" Text="{x:Bind PiecesVM.Piece2Width, Mode=TwoWay}"/>
+                    <TextBox Name="Size3_edit" Grid.Row="4" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="114" Text="{x:Bind PiecesVM.Piece3Width, Mode=TwoWay}" />
+                    <TextBox Name="Size4_edit" Grid.Row="5" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="116" Text="{x:Bind PiecesVM.Piece4Width, Mode=TwoWay}" />
+                    <TextBox Name="Size5_edit" Grid.Row="6" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="118" Text="{x:Bind PiecesVM.Piece5Width, Mode=TwoWay}" />
+
+                    <TextBox Name="Size6_edit" Grid.Row="7" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="120" Text="{x:Bind PiecesVM.Piece6Width, Mode=TwoWay}" />
+                    <TextBox Name="Size7_edit" Grid.Row="8" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="122" Text="{x:Bind PiecesVM.Piece7Width, Mode=TwoWay}" />
+                    <TextBox Name="Size8_edit" Grid.Row="9" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="124" Text="{x:Bind PiecesVM.Piece8Width, Mode=TwoWay}" />
+                    <TextBox Name="Size9_edit" Grid.Row="10" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="126" Text="{x:Bind PiecesVM.Piece9Width, Mode=TwoWay}" />
+                    <TextBox Name="Size10_edit" Grid.Row="11" Grid.Column="0" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="128" Text="{x:Bind PiecesVM.Piece10Width, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="12" Grid.Column="0" Text="Remainder"  HorizontalAlignment="Left" FontSize="16"/>
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="Amount" />
+                    <TextBox Name="Amount1_edit" Grid.Row="2" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="111" Text="{x:Bind PiecesVM.Piece1Amount, Mode=TwoWay}" />
+                    <TextBox Name="Amount2_edit" Grid.Row="3" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="113" Text="{x:Bind PiecesVM.Piece2Amount, Mode=TwoWay}" />
+                    <TextBox Name="Amount3_edit" Grid.Row="4" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="115" Text="{x:Bind PiecesVM.Piece3Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount4_edit" Grid.Row="5" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="117" Text="{x:Bind PiecesVM.Piece4Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount5_edit" Grid.Row="6" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="119" Text="{x:Bind PiecesVM.Piece5Amount, Mode=TwoWay}"/>
+
+                    <TextBox Name="Amount6_edit" Grid.Row="7" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="121" Text="{x:Bind PiecesVM.Piece6Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount7_edit" Grid.Row="8" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="123" Text="{x:Bind PiecesVM.Piece7Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount8_edit" Grid.Row="9" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="125" Text="{x:Bind PiecesVM.Piece8Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount9_edit" Grid.Row="10" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="127" Text="{x:Bind PiecesVM.Piece9Amount, Mode=TwoWay}"/>
+                    <TextBox Name="Amount10_edit" Grid.Row="11" Grid.Column="1" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="129" Text="{x:Bind PiecesVM.Piece10Amount, Mode=TwoWay}"/>
+                    
+                    
+                    <TextBlock Grid.Row="12" Grid.Column="1"  Text="{x:Bind PiecesVM.Remainder, Mode=OneWay}"  HorizontalAlignment="left"/>
+
+                    <Button x:Name="btnGenerateDinFileMultipleLines"  IsEnabled="{x:Bind PiecesVM.EnableBtnGenerateMultiDinFile, Mode=OneWay}"  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"  Width="190" Margin="1,3,1,3" HorizontalAlignment="left" Click="btnGenerateDinFileMultipleLines_click">Generate DIN file</Button> 
+                    
+
+                </Grid>
+
+            </ScrollViewer>
+
+
+            <Grid x:Name="page3_SingleLine" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" ColumnSpacing="3" RowSpacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical"  >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Length Y-direction" Width="180" Padding="4, 7, 4, 5" Margin="1" Height="40"/>
+                        <TextBox Name="Single_Y_Direction_edit" Padding="4, 7, 4, 5" Margin="6,3,6,3" TextAlignment="Center" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="128" Text="{x:Bind SingleLineVM.YLength, Mode=TwoWay}" />
+                        <Button Click="btnGenerateDinFile_Singleline_YLength_click" Margin="1,3,1,3">Generate Din file</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Length X-direction" Width="180" Padding="4, 7, 4, 5" Margin="1" Height="40" />
+                        <TextBox Name="Single_X_Direction_edit" Padding="4, 7, 4, 5" Margin="6,3,6,3" TextAlignment="Center" InputScope="Number" GotFocus="textbox_GotFocus" TabIndex="130" Text="{x:Bind SingleLineVM.XLength, Mode=TwoWay}"  />
+                        <Button Click="btnGenerateDinFile_Singleline_XLength_click" Margin="1,3,1,3" >Generate Din file</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

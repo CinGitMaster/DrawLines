@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>Drawlines2</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;arm64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <ApplicationIcon>Images\CinDrawLines2.ico</ApplicationIcon>
+    <PackageIcon>CinDrawLines.png</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\PlateViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\CinDrawLines2.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.8" />
+    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.8" />
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.8" />
+    <PackageReference Include="PInvoke.User32" Version="0.7.104" />
+    <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\CinDrawLines.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
