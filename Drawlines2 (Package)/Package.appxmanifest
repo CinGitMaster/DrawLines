@@ -2,14 +2,17 @@
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
 
-  <Identity
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap uap3 rescap desktop">
+
+	<Identity
     Name="3c034f66-96d3-44ca-9688-5422bb273f81"
-    Publisher="CN=CinnovaBV-Saties"
-    Version="1.1.4.0" />
+    Publisher="CN=Saties-CinnovaBV"
+    Version="1.1.8.0" />
 
   <Properties>
     <DisplayName>Drawlines2 (Package)</DisplayName>
@@ -31,14 +34,26 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Drawlines2 (Package)"
-        Description="Drawlines2 (Package)"
+        DisplayName="Drawlines2"
+        Description="Drawlines2"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
+
+		<Extensions>
+			<uap3:Extension
+				  Category="windows.appExecutionAlias"
+				  EntryPoint="Windows.FullTrustApplication">
+				<uap3:AppExecutionAlias>
+					<desktop:ExecutionAlias Alias="Drawlines2Alias.exe" />
+				</uap3:AppExecutionAlias>
+			</uap3:Extension>
+		</Extensions>
+		
+		
     </Application>
   </Applications>
 

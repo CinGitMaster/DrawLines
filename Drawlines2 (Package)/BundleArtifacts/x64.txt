@@ -1,2 +1,2 @@
-MainPackage=D:\Projects\SourceTree\Drawlines2\Drawlines2 (Package)\bin\x64\Debug\Drawlines2 (Package)_1.1.4.0_x64_Debug.msix
-SymbolPackage=D:\Projects\SourceTree\Drawlines2\Drawlines2 (Package)\obj\x64\Debug\Symbols\Drawlines2 (Package)_1.1.4.0_x64_Debug.appxsym
+MainPackage=D:\Projects\SourceTree\Drawlines\Drawlines2 (Package)\bin\x64\Debug\Drawlines2 (Package)_1.1.8.0_x64_Debug.msix
+SymbolPackage=D:\Projects\SourceTree\Drawlines\Drawlines2 (Package)\obj\x64\Debug\Symbols\Drawlines2 (Package)_1.1.8.0_x64_Debug.appxsym

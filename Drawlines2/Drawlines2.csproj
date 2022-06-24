@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
@@ -10,6 +10,7 @@
     <UseWinUI>true</UseWinUI>
     <ApplicationIcon>Images\CinDrawLines2.ico</ApplicationIcon>
     <PackageIcon>CinDrawLines.png</PackageIcon>
+    <Version>1.1.2.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ViewModels\PlateViewModel.cs" />
